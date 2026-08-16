@@ -98,7 +98,7 @@ p.lead{font-size:clamp(16px,1.4vw,21px);color:var(--mute);max-width:820px;line-h
 .chip b{color:var(--gold);font-family:var(--num);letter-spacing:.06em;margin-right:6px}
 
 /* ---------- agenda ---------- */
-.agenda{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:10px}
+.agenda{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:10px}
 .agenda .box{position:relative;padding:28px 26px 26px;border-radius:18px;background:linear-gradient(160deg,rgba(255,255,255,.06),rgba(255,255,255,.02));
   border:1px solid var(--line);overflow:hidden;transition:transform .35s,border-color .35s;cursor:pointer}
 .agenda .box:hover{transform:translateY(-6px);border-color:var(--cyan)}
@@ -168,6 +168,29 @@ p.lead{font-size:clamp(16px,1.4vw,21px);color:var(--mute);max-width:820px;line-h
 .fodder{margin-top:18px;padding:16px 18px;border-radius:14px;background:rgba(255,255,255,.04);border:1px solid var(--line);font-size:14px;line-height:1.7}
 .fodder b{color:var(--cyan)}
 
+
+/* ---------- tier list ---------- */
+.tier{display:flex;flex-direction:column;gap:8px}
+.trow{display:grid;grid-template-columns:120px 1fr;border-radius:12px;overflow:hidden;background:var(--bg2);border:1px solid var(--line)}
+.trow .lab{display:flex;align-items:center;justify-content:center;font-family:var(--disp);font-size:20px;letter-spacing:.04em;color:#0b0d16;background:var(--c);text-shadow:0 1px 0 rgba(255,255,255,.35)}
+.trow .cells{display:flex;flex-wrap:wrap;gap:6px;padding:9px 12px;align-items:center}
+.pill{font-size:12.5px;font-weight:700;padding:5px 10px;border-radius:7px;background:rgba(255,255,255,.05);border:1px solid var(--line);color:#e6e8ff;white-space:nowrap;
+  transition:transform .2s,border-color .2s}
+.pill:hover{transform:translateY(-2px);border-color:var(--c)}
+.pill small{font-weight:500;color:var(--mute);margin-left:4px;font-size:11px}
+.pill.m{border-color:color-mix(in srgb,var(--mythic) 60%,transparent)}
+.pill.l{border-color:color-mix(in srgb,var(--legend) 60%,transparent)}
+.pill.e{border-color:color-mix(in srgb,var(--epic) 60%,transparent)}
+.pill.none{color:var(--mute);font-weight:500;font-style:italic;border-style:dashed}
+.t-meta{--c:#ff6b6b}.t-dps{--c:#ffb86b}.t-sup{--c:#ffe36b}.t-farm{--c:#f6ff6b}.t-skip{--c:#9be86b}
+.t-imm{--c:#ff5c7a}.t-ove{--c:#c66bff}.t-jok{--c:#ff8fd8}.t-rup{--c:#ffcf5c}.t-dec{--c:#9dff7a}.t-str{--c:#6bd6ff}.t-asc{--c:#7f8cff}.t-hus{--c:#ff9de0}
+.tier.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tier.two .trow{grid-template-columns:118px 1fr}
+.tier.two .lab{font-size:14px;letter-spacing:.02em}
+.tier.two .cells{padding:8px 10px;min-height:44px}
+.src{margin-top:12px;font-size:12px;color:var(--mute);font-family:var(--num);letter-spacing:.06em}
+@media (max-width:900px){.tier.two{grid-template-columns:1fr}.trow{grid-template-columns:84px 1fr}}
+
 /* ---------- HUD ---------- */
 #hud{position:fixed;left:0;right:0;bottom:0;z-index:4;padding:0 40px 24px;display:flex;align-items:center;justify-content:space-between;pointer-events:none}
 #hud > *{pointer-events:auto}
@@ -221,6 +244,7 @@ p.lead{font-size:clamp(16px,1.4vw,21px);color:var(--mute);max-width:820px;line-h
         <span class="chip"><b>01</b>추천 시작 유닛</span>
         <span class="chip"><b>02</b>진행 루트</span>
         <span class="chip"><b>03</b>팀 조합</span>
+        <span class="chip"><b>04</b>티어표</span>
       </div>
     </div>
     <div class="title-side" data-r="3">
@@ -237,7 +261,8 @@ p.lead{font-size:clamp(16px,1.4vw,21px);color:var(--mute);max-width:820px;line-h
   <div class="agenda">
     <div class="box" data-r="4" onclick="go(2)"><div class="num">01</div><h3>추천 시작 유닛</h3><p>신규 유저가 노려야 할 유닛과 각 유닛의 이상적인 특성(Trait). 신화부터 레어까지.</p></div>
     <div class="box" data-r="5" onclick="go(5)"><div class="num">02</div><h3>진행 루트</h3><p>초반 · 중반 · 후반 · 엔드게임까지 무엇을 먼저 하고 무엇을 얻어야 하는지.</p></div>
-    <div class="box" data-r="6" onclick="go(6)"><div class="num">03</div><h3>팀 조합</h3><p>레이드 · 월드 보스 · 리프트별 조합과 종합 최강 팀.</p></div>
+    <div class="box" data-r="6" onclick="go(5)"><div class="num">03</div><h3>팀 조합</h3><p>레이드 · 월드 보스 · 리프트별 조합과 종합 최강 팀.</p></div>
+    <div class="box" data-r="7" onclick="go(7)"><div class="num">04</div><h3>티어표</h3><p>커뮤니티 유닛 티어표와 유닛별 추천 특성 한눈에.</p></div>
   </div>
 </section>
 
@@ -333,7 +358,49 @@ p.lead{font-size:clamp(16px,1.4vw,21px);color:var(--mute);max-width:820px;line-h
   </div>
 </section>
 
-<!-- 8. END -->
+<!-- 8. UNIT TIER LIST -->
+<section class="slide">
+  <div class="eyebrow" data-r="1">Part 04 · Tier List</div>
+  <h2 data-r="2">유닛 <em>티어표</em><span class="tag">COMMUNITY</span></h2>
+  <div class="tier">
+    <div class="trow t-meta" data-r="3"><div class="lab">META</div><div class="cells">
+      <span class="pill m">마다라<small>에도 텐세이</small></span><span class="pill m">커스드 러버<small>퓨어 러브</small></span><span class="pill m">발크라드<small>언리쉬드</small></span><span class="pill m">고죠<small>호노드 원</small></span><span class="pill m">반<small>퍼거토리</small></span><span class="pill m">마이키<small>토만</small></span><span class="pill m">손오공<small>슈퍼 3</small></span>
+    </div></div>
+    <div class="trow t-dps" data-r="4"><div class="lab">DPS</div><div class="cells">
+      <span class="pill m">멜리오<small>어썰트</small></span><span class="pill m">젤도<small>파이어티</small></span><span class="pill m">이그리스<small>커맨더</small></span><span class="pill m">사스케<small>이터널</small></span><span class="pill m">켄파치<small>언리쉬드</small></span><span class="pill m">스타크<small>프라이모디얼</small></span><span class="pill m">토우지<small>소서러 킬러</small></span><span class="pill m">유타<small>칼라미티</small></span><span class="pill m">베지터<small>슈퍼</small></span><span class="pill m">나루토<small>링크드</small></span><span class="pill m">이치고<small>단가이</small></span><span class="pill m">규타로<small>상현</small></span><span class="pill l">초토</span><span class="pill l">로제</span>
+    </div></div>
+    <div class="trow t-sup" data-r="5"><div class="lab">SUPPORT</div><div class="cells">
+      <span class="pill m">아케노<small>퀸</small></span><span class="pill m">시노부<small>나비의 춤</small></span>
+    </div></div>
+    <div class="trow t-farm" data-r="6"><div class="lab">FARM</div><div class="cells">
+      <span class="pill m">부르마<small>데이터 분석가</small></span><span class="pill e">레오리오</span>
+    </div></div>
+    <div class="trow t-skip" data-r="7"><div class="lab">SKIP</div><div class="cells">
+      <span class="pill m">록시<small>메이지</small></span><span class="pill m">탄고<small>축제의 별</small></span><span class="pill l">히도</span><span class="pill l">이치고<small>초월</small></span><span class="pill l">이타키</span><span class="pill l">이츠소다</span><span class="pill l">켄가코</span><span class="pill l">토키</span><span class="pill l">킹고</span><span class="pill l">넬리</span><span class="pill l">트란코</span>
+    </div></div>
+  </div>
+  <div class="src" data-r="8">※ 커뮤니티 티어표 기준 (@Doyekkkk 등) · 패치에 따라 순위는 바뀔 수 있음</div>
+</section>
+
+<!-- 9. TRAIT TIER LIST -->
+<section class="slide">
+  <div class="eyebrow" data-r="1">Part 04 · Traits</div>
+  <h2 data-r="2">유닛별 <em>추천 특성</em></h2>
+  <p class="lead" data-r="3" style="margin-bottom:18px;font-size:15px">특성 → 그 특성이 잘 맞는 유닛. 리롤할 때 참고.</p>
+  <div class="tier two">
+    <div class="trow t-imm" data-r="4"><div class="lab">IMMORTAL</div><div class="cells"><span class="pill">커스드 러버</span><span class="pill">마다라</span><span class="pill">켄파치</span><span class="pill">멜리오</span><span class="pill">고죠</span></div></div>
+    <div class="trow t-ove" data-r="4"><div class="lab">OVERSEER</div><div class="cells"><span class="pill">커스드 러버</span><span class="pill">유타</span><span class="pill">고죠</span><span class="pill">켄파치</span><span class="pill">멜리오</span><span class="pill">마이키</span><span class="pill">스타크</span></div></div>
+    <div class="trow t-jok" data-r="5"><div class="lab">JOKER</div><div class="cells"><span class="pill none">특별히 권장되는 유닛 없음</span></div></div>
+    <div class="trow t-rup" data-r="5"><div class="lab">RUPTURE</div><div class="cells"><span class="pill">발크라드</span><span class="pill">이그리스</span><span class="pill">토우지</span><span class="pill">베지터</span><span class="pill">젤도</span></div></div>
+    <div class="trow t-dec" data-r="6"><div class="lab">DECAY</div><div class="cells"><span class="pill">마다라</span><span class="pill">규타로</span><span class="pill">시노부</span></div></div>
+    <div class="trow t-str" data-r="6"><div class="lab">STRIDE</div><div class="cells"><span class="pill">나루토</span><span class="pill">아케노</span><span class="pill">반</span><span class="pill">사스케</span><span class="pill">탄고</span></div></div>
+    <div class="trow t-asc" data-r="7"><div class="lab">ASCENDANT</div><div class="cells"><span class="pill">이치고</span><span class="pill">손오공<small>슈퍼 3</small></span></div></div>
+    <div class="trow t-hus" data-r="7"><div class="lab">HUSTLER</div><div class="cells"><span class="pill">부르마</span><span class="pill">레오리오</span></div></div>
+  </div>
+  <div class="src" data-r="8">※ 커뮤니티 특성 티어표 기준 (@Doyekkkk) · 아케노 = Aneko</div>
+</section>
+
+<!-- 10. END -->
 <section class="slide" style="align-items:center;text-align:center">
   <div class="eyebrow" data-r="1">Good luck, summoner</div>
   <h1 data-r="2" style="font-size:clamp(48px,7vw,96px)">이제 <span class="glow">시작</span>하세요</h1>
