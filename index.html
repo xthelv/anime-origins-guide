@@ -273,6 +273,10 @@ p.lead.sm{font-size:15px;margin-bottom:16px}
 
 /* ---------- patch notes ---------- */
 .pn-hero{display:grid;grid-template-columns:1.25fr .75fr;gap:22px;align-items:start}
+#patch-latest h2{margin-bottom:16px}
+#patch-latest .pn-card.big{padding:18px 22px}
+#patch-latest .pn-title{font-size:23px;margin-bottom:6px}
+#patch-latest .hl{margin-bottom:8px}
 .pn-card{border-radius:12px;padding:22px 24px;background:var(--bg2);border:1px solid var(--line);position:relative;overflow:hidden}
 .pn-card.big{border-color:rgba(143,122,209,.5)}
 .pn-top{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px}
@@ -294,7 +298,8 @@ p.lead.sm{font-size:15px;margin-bottom:16px}
 .pn-mini a{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:center;padding:10px 12px;border-radius:12px;background:var(--bg2);border:1px solid var(--line);color:var(--ink);text-decoration:none;cursor:pointer;transition:.2s}
 .pn-mini a:hover{border-color:var(--cyan)}
 .pn-mini .t{font-weight:700;font-size:13.5px}.pn-mini .t small{display:block;color:var(--mute);font-weight:400;font-size:11.5px;margin-top:2px}
-.pn-scroll{max-height:56vh;overflow:auto;padding-right:6px}
+.pn-scroll{max-height:calc(100vh - 520px);min-height:140px;overflow:auto;padding-right:6px}
+#patch-latest,#patch-history{justify-content:flex-start;padding-top:80px}
 .pn-scroll::-webkit-scrollbar{width:6px}.pn-scroll::-webkit-scrollbar-thumb{background:var(--line);border-radius:6px}
 /* history */
 .ph{display:grid;grid-template-columns:300px 1fr;gap:20px;align-items:start}
@@ -650,7 +655,7 @@ body.cover #logo{opacity:0}
         <div class="clock"><small>AM</small>03:00</div><div class="clock"><small>AM</small>06:00</div><div class="clock"><small>AM</small>09:00</div><div class="clock"><small>PM</small>12:00</div>
         <div class="clock"><small>PM</small>03:00</div><div class="clock"><small>PM</small>06:00</div><div class="clock"><small>PM</small>09:00</div><div class="clock"><small>AM</small>12:00</div>
       </div>
-      <div class="note"><b>TIP</b> 반(Ban)을 얻은 뒤엔 리프트가 뜰 때마다 도전 → 유타 획득 + 토우지 진화. 정각에 맞춰 접속해두면 편함.</div>
+      <div class="note"><b>TIP</b> 반(Ban)을 얻은 뒤엔 리프트가 뜰 때마다 도전 → 유타 획득 + 토우지 진화. 공식 디스코드 「채널 및 역할」에서 rift-notification 역할 받으면 스폰 때 핑 옴.</div>
     </div>
     <div class="panel" data-r="4">
       <h3>스타크 획득 (제작)</h3>
@@ -897,6 +902,12 @@ document.querySelectorAll('.gal').forEach(g=>{const bs=g.querySelectorAll('.gtab
 
 // ===== patch notes =====
 const PATCHES=[
+{date:"2026-08-18T09:00:00+09:00",author:"hxly",title:"대규모 버그 수정 · 코드 HappyPatch",tags:["버그","QoL","코드"],
+ hl:["코드 <b>HappyPatch</b> 입력하면 보상","리프트가 이제 <b>XP를 정상 지급</b>","베지터 패시브가 범위 내 <b>다른 사람의 손오공</b>에도 적용","패스 EXP 반복 레벨 미상승 버그 수정 → 51레벨 이상 유저 레벨이 몇 단계 내려가지만 <b>보상은 유지</b>, 다시 받을 수 있음"],
+ sec:[["버그 수정",["어센션 스타 관련 문제 수정","제작 시 골드 부족이면 '골드 부족' 표시","리프트가 XP를 정상 지급하지 않던 문제 수정","아커드 패시브 데미지 보너스 상한이 9%로 정상 제한","시부야·메트로 잔해 HP가 인원수에 따라 스케일되지 않던 문제 수정","서버마다 배너가 다르게 뜨던 문제 수정","리더보드 때문에 30초마다 핑/렉 튀던 문제 수정 + 리더보드 갱신 수정","베지터 패시브가 소유자 손오공뿐 아니라 범위 내 다른 손오공과도 작동","레드 커맨더 '실드 브레이크'당 최대 데미지 250k 고정 → <b>최대 HP의 25%</b> (인원수에 따라 스케일)","이그리트 클래시에서 카드 중간에 지면 갇히던 문제 수정","패스 EXP가 반복 레벨에서 안 오르던 버그 수정"]],
+      ["패스 레벨 안내",["반복 레벨은 삭제되지 않았고 보상도 잃지 않음. EXP가 반복 구간에서 안 오르던 것만 고친 것","51레벨 이상 유저는 표시 레벨이 내려가지만, 이미 받은 보상 중 새 레벨보다 위인 것들은 <b>다시 도달하면 다시 수령 가능</b> → 사실상 이득"]],
+      ["QoL",["프리미엄 패스를 이미 보유해도 프리미엄 패스 + 만렙 티켓 사용 가능","디스코드 <b>rift-notification</b> 채널에 리프트 봇 추가 — 채널 및 역할에서 핑 역할 받으면 스폰 알림"]],
+      ["운영 공지",["당분간 마지막 대형/셧다운 패치. 게임이 안정돼서 다음 업데이트 작업으로 넘어감. 긴급 사안은 계속 처리"]]]},
 {date:"2026-08-17T20:13:00+09:00",author:"valcrad",title:"버그 수정 · 오버시어 계산식 변경",tags:["버그","밸런스"],
  hl:["<b>오버시어</b> 고정 데미지: 피해 감소 <b>전</b> 데미지의 30%로 변경 (사실상 상향)","고죠 영역이 CC 걸렸던 적을 시간정지 못 시키던 문제 수정","반 음식 버프 모바일/콘솔 미작동 수정"],
  sec:[["버그 수정",["고죠 영역(Domain)이 이전에 CC를 받았던 적을 시간정지시키지 못하던 문제 수정","반(Ban) 음식 버프가 모바일/콘솔에서 작동하지 않던 문제 수정"]],
